@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Food Analytics</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Canteen Food Analytics Dashboard</h1>
+    </header>
+    <main>
+        <div class="container">
+            <section id="add-item-section">
+                <h2>Add New Food Item</h2>
+                <form id="add-item-form">
+                    <input type="text" id="name" placeholder="Food Name" required>
+                    <input type="date" id="date" required>
+                    <select id="time_slot" required>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Snacks">Snacks</option>
+                    </select>
+                    <input type="number" id="quantity_prepared" placeholder="Quantity Prepared" required>
+                    <input type="number" id="price" placeholder="Price (₹)" step="0.01" min="0" required>
+                    <button type="submit">Add Item</button>
+                </form>
+            </section>
+
+            <section id="food-items-section">
+                <h2>Today's Food Items</h2>
+                <button id="close-sales-btn" style="margin-bottom: 1rem;">Close Sales</button>
+                <table id="food-items-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Time Slot</th>
+                            <th>Prepared</th>
+                            <th>Sold</th>
+                            <th id="unsold-wasted-header">Unsold</th>
+                            <th>Price (₹)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Food items will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </section>
+
+             <section id="reports-section">
+                <h2>Reports & Analysis</h2>
+                <button id="daily-report-btn">Daily Report</button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add modals for reports -->
+    <div id="modal-overlay" class="modal-overlay" style="display:none;"></div>
+    <div id="report-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <div id="report-content"></div>
+        </div>
+    </div>
+
+    <!-- Add Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+</html> 
